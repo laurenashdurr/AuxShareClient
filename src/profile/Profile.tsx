@@ -7,3 +7,16 @@
 
 
 // footer at the bottom of the page 
+
+import React from 'react'
+
+export class Profile extends React.Component {
+    render() {
+        return(
+            <div>
+                This is the Profile component
+            </div>
+        )
+    }
+
+}

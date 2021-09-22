@@ -8,3 +8,16 @@
 
 
 // footer
+
+import React from 'react'
+
+export class Home extends React.Component {
+    render() {
+        return(
+            <div>
+                This is the Home component
+            </div>
+        )
+    }
+
+}
