@@ -4,7 +4,8 @@ import { Auth } from './auth'
 import { Home } from './home'
 
 type AppState = {
-  sessionToken: string
+  sessionToken: string, 
+  clearToken: string
 }
 
 class App extends Component<{}, AppState> {
@@ -13,6 +14,7 @@ class App extends Component<{}, AppState> {
     super(props)
     this.state = {
       sessionToken: '',
+      clearToken: ''
     }
   }
 
@@ -29,6 +31,11 @@ updateToken = (newToken: string) => {
     console.log(this.state.sessionToken);
   }
 
+  clearToken = () => {
+    localStorage.clear();
+    this.setState({sessionToken: ''});
+  }
+
 
   render() {
     
@@ -36,29 +43,13 @@ updateToken = (newToken: string) => {
     return (
       <div className="App">
 
-        {!this.state.sessionToken ? <Auth updateToken={this.updateToken}/>
-        : <Home/>
+        {!this.state.sessionToken ? <Auth updateToken={this.updateToken} />
+        : <Home clearToken={this.clearToken}/>
         }
       </div>
     )
   }
 }
-// alternative code 
 
-
-// protectedViews = () => {
-//   return (this.state.sessionToken === localStorage.getItem('token') ? <Home/>
-//   : <Auth updateToken={this.updateToken}/>)
-// }
-
-// render() {
-  
-  
-//   return (
-//     <div className="App">
-//       {this.protectedViews()}
-//     </div>
-//   )
-// }
 
 export default App;

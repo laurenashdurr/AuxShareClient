@@ -11,11 +11,17 @@
 
 import React from 'react'
 
-export class Home extends React.Component {
+type HomeProps = {
+    clearToken: Function
+}
+
+export class Home extends React.Component <HomeProps, {}>{
     render() {
         return(
             <div>
                 This is the Home component
+
+                <button onClick={(e) => this.props.clearToken()}>Logout</button>
             </div>
         )
     }
