@@ -8,7 +8,7 @@ export class Favorites extends React.Component {
     render() {
         return(
             <div>
-                This is the favorites component
+                <h1>Favorites</h1>
             </div>
         )
     }

@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import './App.css';
+
 import { Auth } from './auth'
-import { Home } from './home'
+import { Footer } from './common'
 
 type AppState = {
   sessionToken: string, 
@@ -44,8 +45,9 @@ updateToken = (newToken: string) => {
       <div className="App">
 
         {!this.state.sessionToken ? <Auth updateToken={this.updateToken} />
-        : <Home clearToken={this.clearToken}/>
-        }
+        : <Footer clearToken={this.clearToken} token={this.state.sessionToken}/>
+      }
+
       </div>
     )
   }
