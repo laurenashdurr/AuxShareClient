@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Feed } from './Feed'
+// import { Feed } from './Feed'
 
 type HomeProps = {
     token: string
@@ -8,7 +8,7 @@ type HomeProps = {
 
 type HomeState = {
     mixes: [],
-    showComp: boolean
+    // showComp: boolean
 }
 
 type Mix = {
@@ -27,7 +27,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
         super(props)
         this.state = {
             mixes: [],
-            showComp: false
+            // showComp: false
         }
     }
 
@@ -50,10 +50,10 @@ export class Home extends React.Component<HomeProps, HomeState>{
         this.fetchMixes()
     }
 
-    showComp = () => {
-        console.log("it worked")
-        this.setState({showComp: true})
-    }
+    // showComp = () => {
+    //     console.log("it worked")
+    //     this.setState({showComp: true})
+    // }
 
 
     render() {
@@ -70,9 +70,9 @@ export class Home extends React.Component<HomeProps, HomeState>{
                                 <div>
                                 {mix.description}
                                 </div>
-                                <button onClick={this.showComp}>See Tracks</button>
+                                {/* <button onClick={this.showComp}>See Tracks</button>
                                 {this.state.showComp ? <Feed />
-                                : null}
+                                : null} */}
                                 <hr></hr>
                             </div>
                             

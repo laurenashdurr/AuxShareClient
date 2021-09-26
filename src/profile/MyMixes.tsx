@@ -14,7 +14,7 @@ type MmState = {
 }
 
 type Mix = {
-    mixName: string, 
+    mixName: string,
     category: string,
     imageUrl: string,
     description: string
@@ -23,7 +23,7 @@ type Mix = {
 }
 
 
-export class MyMixes extends React.Component <MmProps, MmState> {
+export class MyMixes extends React.Component<MmProps, MmState> {
 
     constructor(props: MmProps) {
         super(props)
@@ -51,30 +51,32 @@ export class MyMixes extends React.Component <MmProps, MmState> {
         this.fetchMixes()
     }
 
-// same as about page, if myMixes === null, direct them to create a mix
+    // same as about page, if myMixes === null, direct them to create a mix
 
 
     render() {
-        return(
+        return (
             <div>
                 <h1>My Mixes</h1>
 
                 {this.state.myMixes.map((mix: Mix, index) => {
-                        return (
-                            <div key={index}>
-                                <img src={mix.imageUrl} alt={"user chosen graphic of mix"}/>
-                                <div>
+                    return (
+                        <div key={index}>
+                            <img src={mix.imageUrl} alt={"user chosen graphic of mix"} />
+                            <div>
                                 {mix.mixName}
-                                </div>
-                                <div>
-                                {mix.description}
-                                </div>
-                                <button>Check it out</button>
-                                <hr></hr>
                             </div>
-                            
-                        )
-                    })}
+                            <div>
+                                {mix.category}
+                            </div>
+                            <div>
+                                {mix.description}
+                            </div>
+                            <hr></hr>
+                        </div>
+
+                    )
+                })}
             </div>
         )
     }

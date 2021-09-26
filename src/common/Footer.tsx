@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { BrowserRouter, Switch, Route, Link} from "react-router-dom";
+
+import { AddMix } from '../create';
 import { Home } from '../home'
-import { Favorites } from '../favorites';
 import { Profile } from '../profile'
 
 
@@ -22,8 +23,8 @@ export class Footer extends React.Component <FooterProps,{} > {
                     <Home token={this.props.token}/>
                 </Route>
 
-                <Route path="/favorites" exact>
-                    <Favorites/>
+                <Route path="/mixes" exact>
+                    <AddMix token={this.props.token}/>
                 </Route>
 
                 <Route path="/profile" exact>
@@ -37,8 +38,8 @@ export class Footer extends React.Component <FooterProps,{} > {
                         <Link to='/'>Home</Link>
                     </li>
                     <li>
-                        <Link to='/favorites'>Favorites</Link>
-                    </li>
+                        <Link to='/mixes'>+</Link>
+                    </li>   
                     <li>
                         <Link to='/profile'>Profile</Link>
                     </li>
