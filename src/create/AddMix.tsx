@@ -11,7 +11,7 @@ type AddMixState = {
     category: string,
     imageUrl: string,
     description: string, 
-    testing: boolean,
+    mixCreate: boolean,
 }
 
 
@@ -25,13 +25,13 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
             category: '',
             imageUrl: '',
             description: '',
-            testing: false,
+            mixCreate: false,
 
         }
     }
 
     handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        this.setState({testing: true});
+        this.setState({mixCreate: true});
         e.preventDefault();
         fetch('http://localhost:3000/mixes/', {
             method: 'POST',
@@ -86,7 +86,7 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
                 <h1>Mix Created! Now, Add Some Tracks.</h1>
                 {this.state.mixName}
                 {this.state.category}
-                <AddTracks />
+                <AddTracks token={this.props.token}/>
             </div>
         )
     }
@@ -94,7 +94,7 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
     render() {
         return (
             <div>
-               {this.state.testing === false ? this.createMixToggle()
+               {this.state.mixCreate === false ? this.createMixToggle()
                     : this.showCreated()} 
             </div>
         )

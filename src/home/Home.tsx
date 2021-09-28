@@ -1,6 +1,6 @@
 import React from 'react'
 
-// import { Feed } from './Feed'
+import { Feed } from './Feed'
 
 type HomeProps = {
     token: string
@@ -8,7 +8,7 @@ type HomeProps = {
 
 type HomeState = {
     mixes: [],
-    // showComp: boolean
+    showComp: boolean
 }
 
 type Mix = {
@@ -27,7 +27,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
         super(props)
         this.state = {
             mixes: [],
-            // showComp: false
+            showComp: false
         }
     }
 
@@ -50,16 +50,27 @@ export class Home extends React.Component<HomeProps, HomeState>{
         this.fetchMixes()
     }
 
-    // showComp = () => {
-    //     console.log("it worked")
-    //     this.setState({showComp: true})
-    // }
+    showComp = () => {
+        this.setState({showComp: true})
+    }
+    hideComp = () => {
+        this.setState({showComp: false})
+    }
 
 
     render() {
         return (
             <div>
                 <h1>DISCOVER</h1>
+                <section>
+                <button>Category 1</button>
+                <button>Category 2</button>
+                <button>Category 3</button>
+                </section>
+                <div>
+                <button onClick={this.showComp}>Show Tracks</button>
+                <button onClick={this.hideComp}>Hide Tracks</button>
+                </div>
                     {this.state.mixes.map((mix: Mix, index) => {
                         return (
                             <div key={index}>
@@ -70,14 +81,13 @@ export class Home extends React.Component<HomeProps, HomeState>{
                                 <div>
                                 {mix.description}
                                 </div>
-                                {/* <button onClick={this.showComp}>See Tracks</button>
                                 {this.state.showComp ? <Feed />
-                                : null} */}
+                                : null}
                                 <hr></hr>
                             </div>
                             
-                        )
-                    })}
+                            )
+                        })}
 
             </div>
         )
@@ -85,13 +95,3 @@ export class Home extends React.Component<HomeProps, HomeState>{
 
 }
 
-// Discover header
-// add mix button 
-// buttons for the different categories that can be displayed. some sort of ternaries to change what gets passed into the feed
-
-
-// feed map
-
-
-
-// footer

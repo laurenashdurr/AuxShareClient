@@ -1,7 +1,3 @@
-// maps across all created mixes. 
-
-// upon clicking each mix. The "display mix page" appears
-
 import React from 'react'
 
 type MmProps = {
@@ -9,7 +5,13 @@ type MmProps = {
 }
 
 type MmState = {
-    myMixes: []
+    myMixes: [],
+    showEdit: boolean,
+    mixName: string,
+    category: string,
+    imageUrl: string,
+    description: string, 
+    myTracks: []
 
 }
 
@@ -18,7 +20,8 @@ type Mix = {
     category: string,
     imageUrl: string,
     description: string
-    UserId: number
+    UserId: number,
+    id: number
 
 }
 
@@ -28,7 +31,13 @@ export class MyMixes extends React.Component<MmProps, MmState> {
     constructor(props: MmProps) {
         super(props)
         this.state = {
-            myMixes: []
+            myMixes: [],
+            mixName: '',
+            category: '',
+            imageUrl: '',
+            description: '',
+            showEdit: false,
+            myTracks: []
         }
     }
 
@@ -47,12 +56,85 @@ export class MyMixes extends React.Component<MmProps, MmState> {
     };
 
 
-    async componentDidMount() {
-        this.fetchMixes()
+
+    deleteMix = (mix: Mix) => {
+        fetch(`http://localhost:3000/mixes/delete/${mix.id}`, {
+            method: 'DELETE',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        })
+            .then(() => this.fetchMixes())
+    };
+
+
+    editMix = async (e: React.FormEvent<HTMLFormElement>, mix: Mix) => {
+        this.setState({ showEdit: false })
+
+        fetch(`http://localhost:3000/mixes/edit/${mix.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({ mix: { mixName: this.state.mixName, category: this.state.category, imageUrl: this.state.imageUrl, description: this.state.description } }),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        }).then(() => this.fetchMixes())
+
+    };
+    
+    editMixToggle = (mix: Mix) => {
+       
+        return (
+            <div>   
+                 
+                 <button onClick={(e) => this.setState({ showEdit: false })}>Nevermind</button>
+                 <form onSubmit={(e) => this.editMix(e, mix)}>
+                <div>
+                    <label htmlFor="mixName">Name</label>
+                    <input onChange={(e) => this.setState({ mixName: e.target.value })} name="mixname" value={this.state.mixName} />
+                </div>
+                <div>
+                    <label htmlFor="category">Category</label>
+                    <select onChange={(e) => this.setState({ category: e.target.value })} name="category" value={this.state.category}>
+                        <option value="mood1">Mood 1</option>
+                        <option value="mood2">Mood 2</option>
+                        <option value="mood3">Mood 3</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="imageUrl">Image</label>
+                    <input onChange={(e) => this.setState({ imageUrl: e.target.value })} name="imageUrl" value={this.state.imageUrl} />
+                </div>
+                <div>
+                    <label htmlFor="description">Description</label>
+                    <input onChange={(e) => this.setState({ description: e.target.value })} name="description" value={this.state.description} />
+                </div>
+                <button type="submit">Save</button>
+            </form>
+            </div>
+        )
     }
 
-    // same as about page, if myMixes === null, direct them to create a mix
+    fetchTracks = async (mix: Mix) => {
+        fetch(`http://localhost:3000/tracks/${mix.id}`, {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        }).then((res) => res.json())
+            .then((data) => {
+                this.setState({ myTracks: data });
+                console.log("in the console", data)
+            })
+    };
 
+
+    async componentDidMount() {
+
+        this.fetchMixes()
+    }
 
     render() {
         return (
@@ -72,6 +154,12 @@ export class MyMixes extends React.Component<MmProps, MmState> {
                             <div>
                                 {mix.description}
                             </div>
+                            <button onClick={(e) => this.setState({ showEdit: true })}>Edit Mix</button>
+                            <button onClick={(e) => this.deleteMix(mix)}>Delete Mix</button>
+                            {this.state.showEdit === true ? this.editMixToggle(mix)
+                                : null}
+                            {/* <button>Show Tracks</button> */}
+                            {console.log("logged:",this.state.myTracks)}
                             <hr></hr>
                         </div>
 
@@ -82,3 +170,4 @@ export class MyMixes extends React.Component<MmProps, MmState> {
     }
 
 }
+

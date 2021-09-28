@@ -1,11 +1,13 @@
 import React from 'react'
 
-// type AddTracksProps = {
-//     token: string
-// }
+type AddTracksProps = {
+    token: string
+}
 
 
-export class AddTracks extends React.Component <{}, {}>{
+export class AddTracks extends React.Component <AddTracksProps, {}>{
+
+
     render() {
         return(
             <div>
