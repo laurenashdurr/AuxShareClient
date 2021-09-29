@@ -1,7 +1,7 @@
 import React from 'react'
 
 type LoginProps = {
-    updateToken: Function
+    updateToken: Function,
 }
 
 type LoginState = {
@@ -49,6 +49,7 @@ export class Login extends React.Component <LoginProps, LoginState> {
                     </div>
                     <button type="submit">Login</button>
                 </form>
+
 
     
 

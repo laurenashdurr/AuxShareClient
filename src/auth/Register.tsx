@@ -1,7 +1,7 @@
 import React from 'react'
 
 type RegisterProps = {
-    updateToken: Function
+    updateToken: Function,
 }
 
 type RegisterState = {

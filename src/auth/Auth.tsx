@@ -11,6 +11,8 @@ type AuthState = {
     authToggle: boolean
 }
 
+
+
 export class Auth extends React.Component<AuthProps, AuthState> {
 
     constructor(props: AuthProps) {
@@ -19,6 +21,11 @@ export class Auth extends React.Component<AuthProps, AuthState> {
             authToggle: true
         }
 
+    }
+
+    toggleFunction = () => {
+        this.setState({ authToggle: !this.state.authToggle})
+    
     }
 
 
@@ -31,7 +38,11 @@ export class Auth extends React.Component<AuthProps, AuthState> {
                     <Login updateToken={this.props.updateToken} />
                 }
 
-                <button onClick={(e) => this.setState({ authToggle: false })} >Already have an account? Login</button>
+                <button onClick={(e) => this.toggleFunction()} >
+                    {this.state.authToggle ? "Already have an account? Login"
+                    : "Don't have an account? Sign Up"}
+                    </button>
+
 
             </div>
         )

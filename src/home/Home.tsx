@@ -8,15 +8,17 @@ type HomeProps = {
 
 type HomeState = {
     mixes: [],
-    showComp: boolean
+    trackToggle: boolean,
+    myTracks: [],
 }
 
 type Mix = {
-    mixName: string, 
+    mixName: string,
     category: string,
     imageUrl: string,
     description: string
-    UserId: number
+    UserId: number,
+    id: number
 
 }
 
@@ -27,7 +29,8 @@ export class Home extends React.Component<HomeProps, HomeState>{
         super(props)
         this.state = {
             mixes: [],
-            showComp: false
+            trackToggle: false,
+            myTracks: [],
         }
     }
 
@@ -45,49 +48,65 @@ export class Home extends React.Component<HomeProps, HomeState>{
             })
     };
 
+    fetchTracks = async (mix: Mix) => {
+        fetch(`http://localhost:3000/tracks/${mix.id}`, {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        }).then((res) => res.json())
+            .then((data) => {
+                this.setState({ myTracks: data });
+                console.log("in the console", data)
+            })
+    };
+
 
     async componentDidMount() {
         this.fetchMixes()
     }
 
-    showComp = () => {
-        this.setState({showComp: true})
-    }
-    hideComp = () => {
-        this.setState({showComp: false})
-    }
 
+    toggleFunction = () => {
+        this.setState({ trackToggle: !this.state.trackToggle })
+
+    }
 
     render() {
         return (
             <div>
                 <h1>DISCOVER</h1>
                 <section>
-                <button>Category 1</button>
-                <button>Category 2</button>
-                <button>Category 3</button>
+                    <button>Category 1</button>
+                    <button>Category 2</button>
+                    <button>Category 3</button>
                 </section>
                 <div>
-                <button onClick={this.showComp}>Show Tracks</button>
-                <button onClick={this.hideComp}>Hide Tracks</button>
+                {this.state.trackToggle ? <Feed tracks={this.state.myTracks} />
+                    : null}
                 </div>
-                    {this.state.mixes.map((mix: Mix, index) => {
-                        return (
-                            <div key={index}>
-                                <img src={mix.imageUrl} alt={"user chosen graphic of mix"}/>
-                                <div>
+                {this.state.mixes.map((mix: Mix, index) => {
+                    return (
+                        <div key={index}>
+                            <img src={mix.imageUrl} alt={"user chosen graphic of mix"} />
+                            <div>
                                 {mix.mixName}
-                                </div>
-                                <div>
-                                {mix.description}
-                                </div>
-                                {this.state.showComp ? <Feed />
-                                : null}
-                                <hr></hr>
                             </div>
-                            
-                            )
-                        })}
+                            <div>
+                                {mix.description}
+                            </div>
+                            <button onClick={(e) => {
+                             this.toggleFunction()
+                             this.fetchTracks(mix)
+                            }}>{this.state.trackToggle ? "Hide the Mix"
+                            : "Peep the Mix"}
+                            </button>
+                            <hr></hr>
+                        </div>
+
+                    )
+                })}
 
             </div>
         )
