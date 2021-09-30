@@ -15,8 +15,8 @@ export class Profile extends React.Component <ProfileProps, {}> {
             <div>
                 <h1>My Profile</h1>
                 <About token={this.props.token}/>
-                <MyMixes token={this.props.token}/>
                 <button onClick={(e) => this.props.clearToken()}>Logout</button>
+                <MyMixes token={this.props.token}/>
             </div>
         )
     }

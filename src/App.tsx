@@ -1,11 +1,13 @@
 import { Component } from 'react';
-import './App.css';
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+
 
 import { Auth } from './auth'
-import { Footer } from './common'
+import {Main} from './common'
 
 type AppState = {
-  sessionToken: string, 
+  sessionToken: string,
   clearToken: string
 }
 
@@ -19,36 +21,35 @@ class App extends Component<{}, AppState> {
     }
   }
 
-async componentDidMount(){
-  let token = localStorage.getItem('token')
-  if (token){
-    this.setState({ sessionToken: token});
+  async componentDidMount() {
+    let token = localStorage.getItem('token')
+    if (token) {
+      this.setState({ sessionToken: token });
+    }
   }
-}
 
-updateToken = (newToken: string) => {
+  updateToken = (newToken: string) => {
     localStorage.setItem('token', newToken);
-    this.setState({sessionToken: newToken});
+    this.setState({ sessionToken: newToken });
     console.log(this.state.sessionToken);
   }
 
   clearToken = () => {
     localStorage.clear();
-    this.setState({sessionToken: ''});
+    this.setState({ sessionToken: '' });
   }
 
 
   render() {
-    
-    
+
+
     return (
-      <div className="App">
-
-        {!this.state.sessionToken ? <Auth updateToken={this.updateToken} />
-        : <Footer clearToken={this.clearToken} token={this.state.sessionToken}/>
-      }
-
-      </div>
+      <Container maxWidth="xl" >
+        <CssBaseline />
+          {!this.state.sessionToken ? <Auth updateToken={this.updateToken} />
+            : <Main clearToken={this.clearToken} token={this.state.sessionToken} />
+          }
+      </Container>
     )
   }
 }

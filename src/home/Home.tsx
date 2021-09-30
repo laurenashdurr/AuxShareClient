@@ -2,6 +2,9 @@ import React from 'react'
 
 import { Feed } from './Feed'
 
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+
 type HomeProps = {
     token: string
 }
@@ -62,6 +65,48 @@ export class Home extends React.Component<HomeProps, HomeState>{
             })
     };
 
+    fetchMixesMood1 = () => {
+        fetch('http://localhost:3000/mixes/mood1', {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        }).then((res) => res.json())
+            .then((logData) => {
+                this.setState({ mixes: logData });
+                console.log(logData)
+            })
+    };
+
+    fetchMixesMood2 = () => {
+        fetch('http://localhost:3000/mixes/mood2', {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        }).then((res) => res.json())
+            .then((logData) => {
+                this.setState({ mixes: logData });
+                console.log(logData)
+            })
+    };
+
+    fetchMixesMood3 = () => {
+        fetch('http://localhost:3000/mixes/mood3', {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}`
+            })
+        }).then((res) => res.json())
+            .then((logData) => {
+                this.setState({ mixes: logData });
+                console.log(logData)
+            })
+    };
+
 
     async componentDidMount() {
         this.fetchMixes()
@@ -77,14 +122,16 @@ export class Home extends React.Component<HomeProps, HomeState>{
         return (
             <div>
                 <h1>DISCOVER</h1>
-                <section>
-                    <button>Category 1</button>
-                    <button>Category 2</button>
-                    <button>Category 3</button>
-                </section>
+            
+                <Stack direction="row" spacing={1}>
+                    <Chip label="All Mixes" color="primary" onClick={this.fetchMixes}/>
+                    <Chip label="Mood 1"onClick={this.fetchMixesMood1}/>
+                    <Chip label="Mood 2" onClick={this.fetchMixesMood2}/>
+                    <Chip label="Mood 3" onClick={this.fetchMixesMood3}/>
+                </Stack>
                 <div>
-                {this.state.trackToggle ? <Feed tracks={this.state.myTracks} />
-                    : null}
+                    {this.state.trackToggle ? <Feed tracks={this.state.myTracks} />
+                        : null}
                 </div>
                 {this.state.mixes.map((mix: Mix, index) => {
                     return (
@@ -97,10 +144,10 @@ export class Home extends React.Component<HomeProps, HomeState>{
                                 {mix.description}
                             </div>
                             <button onClick={(e) => {
-                             this.toggleFunction()
-                             this.fetchTracks(mix)
+                                this.toggleFunction()
+                                this.fetchTracks(mix)
                             }}>{this.state.trackToggle ? "Hide the Mix"
-                            : "Peep the Mix"}
+                                : "Peep the Mix"}
                             </button>
                             <hr></hr>
                         </div>
