@@ -89,12 +89,12 @@ export class About extends React.Component<AboutProps, AboutState>{
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.props.token}`
             })
-        }) .then(() => this.fetchProfile())
+        }).then(() => this.fetchProfile())
 
     };
 
     editProfileToggle = () => {
-        return(
+        return (
             <div>
 
                 <button onClick={(e) => this.setState({ showEdit: false })}>Nevermind</button>
@@ -125,21 +125,17 @@ export class About extends React.Component<AboutProps, AboutState>{
         this.fetchProfile()
     }
 
-
-
-
-
     showProfile = () => {
         return (
             <div>
+                {this.state.showEdit === true ? this.editProfileToggle()
+                    : null}
                 <img src={this.state.profile.avatarUrl} alt="the user profile" />
                 <p>Full Name: {this.state.profile.fullName}</p>
                 <p>Bio: {this.state.profile.bio}</p>
 
                 <button onClick={(e) => this.setState({ showEdit: true })}>Edit Profile</button>
                 <button onClick={(e) => this.deleteProfile()}>Delete Your Profile</button>
-                {this.state.showEdit === true ? this.editProfileToggle()
-                    : null}
 
             </div>
 

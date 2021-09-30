@@ -12,6 +12,16 @@ type AddMixState = {
     imageUrl: string,
     description: string, 
     mixCreate: boolean,
+    createdMix: {
+        mix: {
+            mixName: string,
+            category: string,
+            imageUrl: string,
+            description: string
+            UserId: number,
+            id: number
+        }
+    }
 }
 
 
@@ -26,9 +36,18 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
             imageUrl: '',
             description: '',
             mixCreate: false,
-
+            createdMix: {
+                mix: {
+                    mixName: '',
+                    category: '',
+                    imageUrl: '',
+                    description: '',
+                    UserId: 1,
+                    id: 1
+                }
         }
     }
+}
 
     handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         this.setState({mixCreate: true});
@@ -43,10 +62,12 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
         }).then(
             (response) => response.json()
         ).then((logData) => {
+            this.setState({ createdMix: logData });
             console.log(logData)
         })
-
     }
+
+
 
     createMixToggle = () => {
         return (
@@ -83,10 +104,20 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
     showCreated = () => {
         return (
             <div>
-                <h1>Mix Created! Now, Add Some Tracks.</h1>
+                <h1>Mix Created!</h1>
+                <div>
+                {this.state.imageUrl}
+                </div>
+                <div>
                 {this.state.mixName}
+                </div>
+                <div>
                 {this.state.category}
-                <AddTracks token={this.props.token}/>
+                </div>
+                <div>
+                {this.state.description}
+                </div>
+                <AddTracks token={this.props.token} mix={this.state.createdMix}/>
             </div>
         )
     }

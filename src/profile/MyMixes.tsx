@@ -30,11 +30,6 @@ type Mix = {
 
 }
 
-type Track = {
-    title: string,
-    artist: string,
-    note: string
-}
 
 
 export class MyMixes extends React.Component<MmProps, MmState> {

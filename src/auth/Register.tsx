@@ -45,7 +45,7 @@ export class Register extends React.Component <RegisterProps, RegisterState> {
                     </div>
                     <div>
                         <label htmlFor="password">Password</label>
-                        <input onChange={(e) => this.setState({password: e.target.value})} name="password" value={this.state.password} />
+                        <input type="password" onChange={(e) => this.setState({password: e.target.value})} name="password" value={this.state.password} />
                     </div>
                     <button type="submit">Sign Up</button>
                 </form>
