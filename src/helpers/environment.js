@@ -5,7 +5,7 @@ switch (window.location.hostname) {
         APIURL = 'http://localhost:3000';
         break;
 
-    case 'lad-aux-share.herokuapp.com':
+    case 'aux-share-client.herokuapp.com':
         APIURL = 'https://lad-aux-share.herokuapp.com'
 
 }
