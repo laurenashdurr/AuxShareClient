@@ -1,5 +1,7 @@
 import React from 'react'
 
+import APIURL from '../helpers/environment'
+
 import { Feed } from './Feed'
 
 import Chip from '@mui/material/Chip';
@@ -38,7 +40,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     }
 
     fetchMixes = () => {
-        fetch('http://localhost:3000/mixes/all', {
+        fetch(`${APIURL}/mixes/all`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -52,7 +54,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchTracks = async (mix: Mix) => {
-        fetch(`http://localhost:3000/tracks/${mix.id}`, {
+        fetch(`${APIURL}/${mix.id}`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -66,7 +68,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchMixesMood1 = () => {
-        fetch('http://localhost:3000/mixes/mood1', {
+        fetch(`${APIURL}/mixes/mood1`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -80,7 +82,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchMixesMood2 = () => {
-        fetch('http://localhost:3000/mixes/mood2', {
+        fetch(`${APIURL}/mixes/mood2`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -94,7 +96,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchMixesMood3 = () => {
-        fetch('http://localhost:3000/mixes/mood3', {
+        fetch(`${APIURL}/mixes/mood3`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',

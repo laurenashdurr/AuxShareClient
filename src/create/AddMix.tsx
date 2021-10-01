@@ -1,5 +1,7 @@
 import React from 'react'
 
+import APIURL from '../helpers/environment'
+
 import { AddTracks } from "./AddTracks"
 
 type AddMixProps = {
@@ -52,7 +54,7 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
     handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         this.setState({mixCreate: true});
         e.preventDefault();
-        fetch('http://localhost:3000/mixes/', {
+        fetch(`${APIURL}/mixes/`, {
             method: 'POST',
             body: JSON.stringify({ mix: { mixName: this.state.mixName, category: this.state.category, imageUrl: this.state.imageUrl, description: this.state.description } }),
             headers: new Headers({

@@ -1,4 +1,7 @@
 import React from 'react'
+
+import APIURL from '../helpers/environment'
+
 import { Feed } from '../home'
 
 type MmProps = {
@@ -59,7 +62,7 @@ export class MyMixes extends React.Component<MmProps, MmState> {
     }
 
     fetchMixes = () => {
-        fetch('http://localhost:3000/mixes/mine', {
+        fetch(`${APIURL}/mixes/mine`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -75,7 +78,7 @@ export class MyMixes extends React.Component<MmProps, MmState> {
 
 
     deleteMix = (mix: Mix) => {
-        fetch(`http://localhost:3000/mixes/delete/${mix.id}`, {
+        fetch(`${APIURL}/mixes/delete/${mix.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -89,7 +92,7 @@ export class MyMixes extends React.Component<MmProps, MmState> {
     editMix = async (e: React.FormEvent<HTMLFormElement>, mix: Mix) => {
         this.setState({ showEdit: false })
 
-        fetch(`http://localhost:3000/mixes/edit/${mix.id}`, {
+        fetch(`${APIURL}/mixes/edit/${mix.id}`, {
             method: 'PUT',
             body: JSON.stringify({ mix: { mixName: this.state.mixName, category: this.state.category, imageUrl: this.state.imageUrl, description: this.state.description } }),
             headers: new Headers({
@@ -106,7 +109,7 @@ export class MyMixes extends React.Component<MmProps, MmState> {
     }
 
     fetchTracks = async (mix: Mix) => {
-        fetch(`http://localhost:3000/tracks/${mix.id}`, {
+        fetch(`${APIURL}/tracks/${mix.id}`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',

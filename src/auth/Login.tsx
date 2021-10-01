@@ -1,5 +1,7 @@
 import React from 'react'
 
+import APIURL from '../helpers/environment'
+
 type LoginProps = {
     updateToken: Function,
 }
@@ -21,7 +23,7 @@ export class Login extends React.Component <LoginProps, LoginState> {
 
     handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch('http://localhost:3000/auth/login', {
+        fetch(`${APIURL}/auth/login`, {
             method: 'POST',
             body: JSON.stringify({ user: { username: this.state.username, password: this.state.password } }),
             headers: new Headers({

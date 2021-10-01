@@ -1,7 +1,6 @@
-// if there is no profile, show the create profile button and add a form that takes in the info. Ternary? 
-// upon update, "refresh" and display the profile 
-
 import React from 'react'
+
+import APIURL from '../helpers/environment'
 
 type AboutProps = {
     token: string
@@ -42,7 +41,7 @@ export class About extends React.Component<AboutProps, AboutState>{
     }
 
     fetchProfile = () => {
-        fetch('http://localhost:3000/profile/', {
+        fetch(`${APIURL}/profile/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -57,7 +56,7 @@ export class About extends React.Component<AboutProps, AboutState>{
 
     createProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch('http://localhost:3000/profile/', {
+        fetch(`${APIURL}/profile/`, {
             method: 'POST',
             body: JSON.stringify({ profile: { fullName: this.state.fullName, avatarUrl: this.state.avatarUrl, bio: this.state.bio } }),
             headers: new Headers({
@@ -69,7 +68,7 @@ export class About extends React.Component<AboutProps, AboutState>{
     }
 
     deleteProfile = () => {
-        fetch(`http://localhost:3000/profile/delete`, {
+        fetch(`${APIURL}/profile/delete`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -82,7 +81,7 @@ export class About extends React.Component<AboutProps, AboutState>{
     editProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         this.setState({ showEdit: false })
 
-        fetch(`http://localhost:3000/profile/edit`, {
+        fetch(`${APIURL}/profile/edit`, {
             method: 'PUT',
             body: JSON.stringify({ profile: { fullName: this.state.fullName, avatarUrl: this.state.avatarUrl, bio: this.state.bio } }),
             headers: new Headers({

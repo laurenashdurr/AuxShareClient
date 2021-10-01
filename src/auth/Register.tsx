@@ -1,5 +1,7 @@
 import React from 'react'
 
+import APIURL from '../helpers/environment'
+
 type RegisterProps = {
     updateToken: Function,
 }
@@ -21,7 +23,7 @@ export class Register extends React.Component <RegisterProps, RegisterState> {
 
     handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch('http://localhost:3000/auth/register', {
+        fetch(`${APIURL}/auth/register`, {
             method: 'POST',
             body: JSON.stringify({ user: { username: this.state.username, password: this.state.password } }),
             headers: new Headers({

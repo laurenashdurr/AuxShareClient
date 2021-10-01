@@ -1,5 +1,7 @@
 import React from 'react'
 
+import APIURL from '../helpers/environment'
+
 type AddTracksProps = {
     token: string,
     mix: {
@@ -49,7 +51,7 @@ export class AddTracks extends React.Component<AddTracksProps, AddTracksState>{
     }
 
     fetchTracks = async (mix: Mix) => {
-        fetch(`http://localhost:3000/tracks/${mix.id}`, {
+        fetch(`${APIURL}/${mix.id}`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -64,7 +66,7 @@ export class AddTracks extends React.Component<AddTracksProps, AddTracksState>{
 
     handleSubmit = async (e: React.FormEvent<HTMLFormElement>, mix: Mix) => {
         e.preventDefault();
-        fetch(`http://localhost:3000/tracks/${mix.id}`, {
+        fetch(`${APIURL}/${mix.id}`, {
             method: 'POST',
             body: JSON.stringify({ track: { title: this.state.title, artist: this.state.artist, note: this.state.note } }),
             headers: new Headers({
