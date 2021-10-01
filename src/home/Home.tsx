@@ -54,7 +54,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchTracks = async (mix: Mix) => {
-        fetch(`${APIURL}/${mix.id}`, {
+        fetch(`${APIURL}/tracks/${mix.id}`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
