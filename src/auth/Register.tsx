@@ -2,6 +2,8 @@ import React from 'react'
 
 import APIURL from '../helpers/environment'
 
+import { Typography, TextField, Button } from '@mui/material'
+
 type RegisterProps = {
     updateToken: Function,
 }
@@ -11,7 +13,7 @@ type RegisterState = {
     password: string
 }
 
-export class Register extends React.Component <RegisterProps, RegisterState> {
+export class Register extends React.Component<RegisterProps, RegisterState> {
 
     constructor(props: RegisterProps) {
         super(props)
@@ -37,22 +39,31 @@ export class Register extends React.Component <RegisterProps, RegisterState> {
 
     }
     render() {
-        return(
+        return (
             <div>
-                <h1>Sign Up</h1>
+                <Typography sx={{
+                    paddingBottom: 2,
+                }}
+                    variant='h3'>
+                    Sign Up
+                    </Typography>
+
                 <form onSubmit={(e) => this.handleSubmit(e)}>
-                    <div>
-                        <label htmlFor="username">Username</label>
-                        <input onChange={(e) => this.setState({username: e.target.value})} name="username" value={this.state.username} />
+                    <div >
+                        <TextField required variant="outlined" id="outlined-size-normal" label="Username" defaultValue="Username" onChange={(e) => this.setState({ username: e.target.value })} name="username" value={this.state.username} />
                     </div>
                     <div>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" onChange={(e) => this.setState({password: e.target.value})} name="password" value={this.state.password} />
+                        <TextField required variant="outlined" id="outlined-size-normal" label="Password" defaultValue="Password" type="password" onChange={(e) => this.setState({ password: e.target.value })} name="password" value={this.state.password} />
                     </div>
-                    <button type="submit">Sign Up</button>
+                    <Button 
+                    sx={{
+                        color: "white", 
+                        paddingTop: 2
+                    }}
+                    variant="text" type="submit">LETS DO IT</Button>
                 </form>
 
-                
+
             </div>
         )
     }

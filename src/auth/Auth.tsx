@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import { Typography, Box, Grid } from '@mui/material';
+
 
 
 import { Login } from './Login'
@@ -40,21 +40,49 @@ export class Auth extends React.Component<AuthProps, AuthState> {
             <Grid
                 container spacing={2}
                 direction="row"
-                justifyContent="space-evenly"
+                justifyContent="center"
                 alignItems="center"
             >
-                <Grid item lg>
-                    <h1>Aux Share</h1>
-                </Grid>
-                <Grid item lg>
+
+                <Grid
+                    item
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                >
+                    <Typography
+                        sx={{
+                           
+                            paddingTop: 7,
+                            fontSize: 75,
+                        }}
+
+                        variant='h1'>
+                        Aux Share
+                    </Typography>
+
+                    <Typography
+                        sx={{
+                            paddingBottom: 5,
+                            fontSize: 25,
+                        }}
+                        variant='h1'>
+                        Tag line goes here, Tag line goes here
+                    </Typography>
 
                     <Box
                         sx={{
-                            width: "flex",
-                            height: "flex",
-                            bgcolor: 'yellow',
-                            borderRadius: 5,
-                            textAlign: 'center'
+                            minWidth: 300,
+                            minHeight: 300,
+                            maxWidth: 700,
+                            maxHeight: 700,
+                            bgcolor: '#6200EE',
+                            borderRadius: 17,
+                            textAlign: 'center',
+                            color: "white",
+                            alignContent: "center",
+                            justifyContent: "center",
+                            padding: 5
                         }}>
 
 
@@ -63,7 +91,11 @@ export class Auth extends React.Component<AuthProps, AuthState> {
                             <Login updateToken={this.props.updateToken} />
                         }
 
-                        <Button onClick={(e) => this.toggleFunction()} >
+                        <Button
+                            sx={{
+                                color: 'black'
+                            }}
+                            onClick={(e) => this.toggleFunction()} >
                             {this.state.authToggle ? "Already have an account? Login"
                                 : "Don't have an account? Sign Up"}
                         </Button>
