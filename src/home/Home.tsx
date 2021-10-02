@@ -123,8 +123,8 @@ export class Home extends React.Component<HomeProps, HomeState>{
     render() {
         return (
             <Grid
-                container spacing={2}
-                direction="row"
+                container
+                direction="column"
                 justifyContent="center"
                 alignItems="center"
             >
@@ -141,7 +141,9 @@ export class Home extends React.Component<HomeProps, HomeState>{
                 </Typography>
 
                 <Stack direction="row" spacing={1}>
-                    <Chip label="All Mixes" color="primary" onClick={this.fetchMixes} />
+                    <Chip sx={{
+                        backgroundColor: '#6200EE'
+                    }} label="All Mixes" onClick={this.fetchMixes} />
                     <Chip label="Mood 1" onClick={this.fetchMixesMood1} />
                     <Chip label="Mood 2" onClick={this.fetchMixesMood2} />
                     <Chip label="Mood 3" onClick={this.fetchMixesMood3} />

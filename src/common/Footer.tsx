@@ -49,7 +49,7 @@ export class Footer extends React.Component<FooterProps, {}> {
 
                 </BrowserRouter>
 
-                <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, bgcolor: '#6200EE', color: 'white' }} elevation={3}>
+                <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, backgroundColor: '#6200EE' }} elevation={3}>
 
                     <BottomNavigation
                         showLabels
