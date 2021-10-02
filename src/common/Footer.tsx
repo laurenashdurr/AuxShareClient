@@ -34,7 +34,7 @@ export class Footer extends React.Component<FooterProps, {}> {
                 <BrowserRouter>
 
                     <Switch>
-                        <Route path="/home" exact>
+                        <Route path="/" exact>
                             <Home token={this.props.token} />
                         </Route>
 
@@ -49,12 +49,12 @@ export class Footer extends React.Component<FooterProps, {}> {
 
                 </BrowserRouter>
 
-                <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+                <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, bgcolor: '#6200EE', color: 'white' }} elevation={3}>
 
                     <BottomNavigation
                         showLabels
                     >
-                        <BottomNavigationAction label="Home" href="/home" icon={<HomeRoundedIcon />} />
+                        <BottomNavigationAction label="Home" href="/" icon={<HomeRoundedIcon />} />
                         <BottomNavigationAction label="Create" href="/mixes" icon={<AddCircleRoundedIcon />} />
                         <BottomNavigationAction label="Profile" href="/profile" icon={<AccountCircleRoundedIcon />} />
                     </BottomNavigation>

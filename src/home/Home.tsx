@@ -4,8 +4,8 @@ import APIURL from '../helpers/environment'
 
 import { Feed } from './Feed'
 
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
+import { Typography, Box, Grid, Chip, Stack } from '@mui/material';
+
 
 type HomeProps = {
     token: string
@@ -122,14 +122,29 @@ export class Home extends React.Component<HomeProps, HomeState>{
 
     render() {
         return (
-            <div>
-                <h1>DISCOVER</h1>
-            
+            <Grid
+                container spacing={2}
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+            >
+
+                <Typography
+                    sx={{
+
+                        paddingTop: 7,
+                        fontSize: 75,
+                    }}
+
+                    variant='h1'>
+                    DISCOVER
+                </Typography>
+
                 <Stack direction="row" spacing={1}>
-                    <Chip label="All Mixes" color="primary" onClick={this.fetchMixes}/>
-                    <Chip label="Mood 1"onClick={this.fetchMixesMood1}/>
-                    <Chip label="Mood 2" onClick={this.fetchMixesMood2}/>
-                    <Chip label="Mood 3" onClick={this.fetchMixesMood3}/>
+                    <Chip label="All Mixes" color="primary" onClick={this.fetchMixes} />
+                    <Chip label="Mood 1" onClick={this.fetchMixesMood1} />
+                    <Chip label="Mood 2" onClick={this.fetchMixesMood2} />
+                    <Chip label="Mood 3" onClick={this.fetchMixesMood3} />
                 </Stack>
                 <div>
                     {this.state.trackToggle ? <Feed tracks={this.state.myTracks} />
@@ -157,7 +172,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
                     )
                 })}
 
-            </div>
+            </Grid>
         )
     }
 
