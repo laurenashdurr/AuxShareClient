@@ -4,9 +4,9 @@ import APIURL from '../helpers/environment'
 
 import { Feed } from './Feed'
 
-import { Typography, Box, Grid, Chip, Stack, Card, CardContent, Avatar, Container, CardHeader, IconButton, Paper } from '@mui/material';
+import { Typography, Button, Grid, Chip, Stack, Card, CardContent, Avatar, CardHeader } from '@mui/material';
 
-import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+
 
 
 type HomeProps = {
@@ -70,7 +70,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchMixesMood1 = () => {
-        fetch(`${APIURL}/mixes/mood1`, {
+        fetch(`${APIURL}/mixes/hype`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchMixesMood2 = () => {
-        fetch(`${APIURL}/mixes/mood2`, {
+        fetch(`${APIURL}/mixes/avibe`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchMixesMood3 = () => {
-        fetch(`${APIURL}/mixes/mood3`, {
+        fetch(`${APIURL}/mixes/imf`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -152,61 +152,36 @@ export class Home extends React.Component<HomeProps, HomeState>{
                     <Chip sx={{
                         backgroundColor: '#6200EE',
                         color: "white"
-                    }} label="Mood 1" onClick={this.fetchMixesMood1} />
+                    }} label="Hype" onClick={this.fetchMixesMood1} />
                     <Chip sx={{
                         backgroundColor: '#6200EE',
                         color: "white"
-                    }} label="Mood 2" onClick={this.fetchMixesMood2} />
+                    }} label="A Vibe" onClick={this.fetchMixesMood2} />
                     <Chip sx={{
                         backgroundColor: '#6200EE',
                         color: "white"
-                    }} label="Mood 3" onClick={this.fetchMixesMood3} />
+                    }} label="In My Feelings" onClick={this.fetchMixesMood3} />
                 </Stack>
-
 
                 {this.state.trackToggle ? <Feed tracks={this.state.myTracks} />
                     : null}
 
-                {/* test code */}
-                {/* <Card sx={{ minWidth: 350, maxWidth: 350, color: "white", minHeight: 150, maxHeight: 200, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
-                    <CardHeader sx={{ paddingBottom: 0, paddingTop: 1 }}
-                        avatar={
-                            <Avatar src="https://assets3.thrillist.com/v1/image/2726470/1200x630/flatten;crop_down;jpeg_quality=70" />
-                        }
-                        title="title"
-                        action={
-                            <IconButton aria-label="settings"
-                            >
-                                <UnfoldMoreRoundedIcon sx={{ color: "white" }} />
-                            </IconButton>
-                        }
-                    />
-                    <CardContent sx={{ paddingTop: 0, paddingBottom: 1 }}>
-                        <Typography variant="body2">
-                            this is a fake description I really love this mix and all the descriptions should really be this long to help the length
-                        </Typography>
-                    </CardContent>
-
-                </Card> */}
-
-                {/* test code  */}
-
                 {this.state.mixes.map((mix: Mix, index) => {
                     return (
                         <div key={index}>
-                            <Card sx={{ minWidth: 350, maxWidth: 350, color: "white", minHeight: 150, maxHeight: 200, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
+                            <Card sx={{ minWidth: 350, maxWidth: 350, color: "white", minHeight: 120, maxHeight: 120, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
                                 <CardHeader sx={{ paddingBottom: 0, paddingTop: 1 }}
                                     avatar={
                                         <Avatar src={mix.imageUrl} alt={"user chosen graphic of mix"} />
                                     }
-                                    title={mix.mixName + "•" + mix.category}
+                                    title={mix.mixName + " • " + mix.category}
                                     action={
-                                        <IconButton aria-label="settings" onClick={(e) => {
+                                        <Button aria-label="settings" onClick={(e) => {
                                             this.toggleFunction()
                                             this.fetchTracks(mix)
                                         }}>
-                                            <UnfoldMoreRoundedIcon sx={{ color: "white" }} />
-                                        </IconButton>
+                                            {this.state.trackToggle ? "Hide the Mix"
+                                                : "Peep the Mix"}</Button>
                                     }
                                 />
                                 <CardContent sx={{ paddingTop: 0, paddingBottom: 0 }}>

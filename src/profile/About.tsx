@@ -2,6 +2,9 @@ import React from 'react'
 
 import APIURL from '../helpers/environment'
 
+
+import { Typography, Button, Grid, Chip, Stack, Card, CardContent, Avatar, CardHeader } from '@mui/material';
+
 type AboutProps = {
     token: string
 }
@@ -168,10 +171,27 @@ export class About extends React.Component<AboutProps, AboutState>{
 
     render() {
         return (
-            <div>
+            <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+
+        >
+               <Typography
+                    sx={{
+
+                        paddingTop: 2,
+                        paddingBottom: 2,
+                        fontSize: 75,
+                    }}
+                    variant='h1'>
+                    Profile
+                </Typography>
+
                 {this.state.profile === null ? this.noProfile()
                     : this.showProfile()}
-            </div>
+            </Grid>
         )
     }
 
