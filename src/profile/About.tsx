@@ -168,7 +168,7 @@ export class About extends React.Component<AboutProps, AboutState>{
     noProfile = () => {
         return (
             <div>
-                <Typography variant="h3" component="div">You currently don't have a profile, Create one!</Typography>
+                <Typography variant="h3" component="div">You currently don't have a profile. Create one!</Typography>
                 <form style={{ textAlign: "center" }} onSubmit={(e) => this.createProfile(e)}>
                     <div>
                         <TextField required variant="outlined" id="outlined-size-normal" label="Full Name" defaultValue="Full Name" onChange={(e) => this.setState({ fullName: e.target.value })} name="fullname" value={this.state.fullName} />
@@ -179,7 +179,6 @@ export class About extends React.Component<AboutProps, AboutState>{
                     <div>
                         <TextField variant="outlined" id="outlined-size-normal" label="Bio" defaultValue="Bio" onChange={(e) => this.setState({ bio: e.target.value })} name="bio" value={this.state.bio} />
                     </div>
-                    <button type="submit">Create Profile</button>
                     <Button sx={{
                         color: '#6200EE',
                         paddingTop: 1

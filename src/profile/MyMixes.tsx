@@ -137,7 +137,7 @@ export class MyMixes extends React.Component<MmProps, MmState> {
 
     render() {
         return (
-            <div>
+            <div style={{ textAlign: "center" }}>
                 <Typography
                     sx={{
 
@@ -188,28 +188,6 @@ export class MyMixes extends React.Component<MmProps, MmState> {
                 {this.state.myMixes.map((mix: Mix, index) => {
 
                     return (
-                    //     <div key={index}>
-                    //         <img src={mix.imageUrl} alt={"user chosen graphic of mix"} />
-                    //         <div>
-                    //             {mix.mixName}
-                    //         </div>
-                    //         <div>
-                    //             {mix.category}
-                    //         </div>
-                    //         <div>
-                    //             {mix.description}
-                    //         </div>
-                    //         <button onClick={(e) => {
-                    //             this.editMixToggle(mix);
-                    //             this.setState({ showEdit: true, currentMix: mix })
-                    //         }}>Edit Mix</button>
-                    //         <button onClick={(e) => this.deleteMix(mix)}>Delete Mix</button>
-                    //         <button onClick={() => {
-                    //             this.toggleFunction()
-                    //             this.fetchTracks(mix)
-                    //         }}
-                    //         >{this.state.trackToggle ? "Hide the Mix"
-                    //             : "Peep the Mix"}</button>
 
                             <div key={index}>
                                 <Card sx={{ minWidth: 330, maxWidth: 330, color: "white", minHeight: 120, maxHeight: 120, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
