@@ -4,7 +4,9 @@ import APIURL from '../helpers/environment'
 
 import { Feed } from './Feed'
 
-import { Typography, Box, Grid, Chip, Stack } from '@mui/material';
+import { Typography, Box, Grid, Chip, Stack, Card, CardContent, Avatar, Container, CardHeader, IconButton } from '@mui/material';
+
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 
 type HomeProps = {
@@ -132,7 +134,8 @@ export class Home extends React.Component<HomeProps, HomeState>{
                 <Typography
                     sx={{
 
-                        paddingTop: 7,
+                        paddingTop: 5,
+                        paddingBottom: 2,
                         fontSize: 75,
                     }}
 
@@ -140,40 +143,84 @@ export class Home extends React.Component<HomeProps, HomeState>{
                     DISCOVER
                 </Typography>
 
-                <Stack direction="row" spacing={1}>
+                <Stack sx={{
+                    paddingBottom: 2,
+                }} direction="row" spacing={2}>
                     <Chip sx={{
-                        backgroundColor: '#6200EE'
+                        backgroundColor: '#6200EE80',
+                        color: "white"
                     }} label="All Mixes" onClick={this.fetchMixes} />
-                    <Chip label="Mood 1" onClick={this.fetchMixesMood1} />
-                    <Chip label="Mood 2" onClick={this.fetchMixesMood2} />
-                    <Chip label="Mood 3" onClick={this.fetchMixesMood3} />
+                    <Chip sx={{
+                        backgroundColor: '#6200EE',
+                        color: "white"
+                    }} label="Mood 1" onClick={this.fetchMixesMood1} />
+                    <Chip sx={{
+                        backgroundColor: '#6200EE',
+                        color: "white"
+                    }} label="Mood 2" onClick={this.fetchMixesMood2} />
+                    <Chip sx={{
+                        backgroundColor: '#6200EE',
+                        color: "white"
+                    }} label="Mood 3" onClick={this.fetchMixesMood3} />
                 </Stack>
-                <div>
+
+                <Box>
                     {this.state.trackToggle ? <Feed tracks={this.state.myTracks} />
                         : null}
-                </div>
+                </Box>
+
+                {/* //test code  */}
+                {/* 
+                <Card sx={{ minWidth: 300, color: "white", maxHeight: 300, backgroundColor: '#6200EE', borderRadius: 10 }} >
+                    <CardHeader sx={{ paddingBottom: 1, paddingTop: 1 }}
+                        avatar={
+                            <Avatar src="https://i.pinimg.com/originals/db/93/b6/db93b60c27d746223a07988e5f4872b0.jpg" />
+                        }
+                        title="Name of the mix · Type"
+                        action={
+                            <IconButton aria-label="settings">
+                                <UnfoldMoreRoundedIcon sx={{ color: "white" }} />
+                            </IconButton>
+                        }
+                    />
+                    <CardContent sx={{ paddingTop: 1, paddingBottom: 1 }}>
+                        <Typography variant="body2">
+                            This is the description of the mix and all the content that goes with it.This is the description of the mix and all the content that goes.This is the description of the mix and all the content that goes with it
+                        </Typography>
+                    </CardContent>
+                </Card> */}
+
+                {/* //test code end */}
+
                 {this.state.mixes.map((mix: Mix, index) => {
                     return (
                         <div key={index}>
-                            <img src={mix.imageUrl} alt={"user chosen graphic of mix"} />
-                            <div>
-                                {mix.mixName}
-                            </div>
-                            <div>
-                                {mix.description}
-                            </div>
-                            <button onClick={(e) => {
-                                this.toggleFunction()
-                                this.fetchTracks(mix)
-                            }}>{this.state.trackToggle ? "Hide the Mix"
-                                : "Peep the Mix"}
-                            </button>
-                            <hr></hr>
-                        </div>
+                            <Card sx={{ minWidth: 300, color: "white", maxHeight: 300, backgroundColor: '#6200EE', borderRadius: 10 }} >
+                                <CardHeader sx={{ paddingBottom: 1, paddingTop: 1 }}
+                                    avatar={
+                                        <Avatar src={mix.imageUrl} alt={"user chosen graphic of mix"} />
+                                    }
+                                    title={mix.mixName}
+                                    action={
+                                        <IconButton aria-label="settings" onClick={(e) => {
+                                            this.toggleFunction()
+                                            this.fetchTracks(mix)
+                                        }}>
+                                            <UnfoldMoreRoundedIcon sx={{ color: "white" }} />
+                                        </IconButton>
+                                    }
+                                />
+                                <CardContent sx={{ paddingTop: 1, paddingBottom: 1 }}>
+                                    <Typography variant="body2">
+                                        {mix.description}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                     </div>
+
 
                     )
                 })}
-
             </Grid>
         )
     }

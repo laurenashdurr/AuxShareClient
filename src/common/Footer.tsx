@@ -49,19 +49,25 @@ export class Footer extends React.Component<FooterProps, {}> {
 
                 </BrowserRouter>
 
-                <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, backgroundColor: '#6200EE' }} elevation={3}>
+                <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+
+
 
                     <BottomNavigation
                         showLabels
+                        sx={{
+                            backgroundColor: '#6200EE',
+                            color: "white"
+                        }}
                     >
-                        <BottomNavigationAction label="Home" href="/" icon={<HomeRoundedIcon />} />
-                        <BottomNavigationAction label="Create" href="/mixes" icon={<AddCircleRoundedIcon />} />
-                        <BottomNavigationAction label="Profile" href="/profile" icon={<AccountCircleRoundedIcon />} />
+                        <BottomNavigationAction sx={{ color: "white" }} label="Home" href="/" icon={<HomeRoundedIcon sx={{ color: "white" }} />} />
+                        <BottomNavigationAction sx={{ color: "white" }} label="Create" href="/mixes" icon={<AddCircleRoundedIcon sx={{ color: "white" }} />} />
+                        <BottomNavigationAction sx={{ color: "white" }} label="Profile" href="/profile" icon={<AccountCircleRoundedIcon sx={{ color: "white" }} />} />
                     </BottomNavigation>
                 </Paper>
 
 
-                </Box>
+            </Box>
 
 
 
