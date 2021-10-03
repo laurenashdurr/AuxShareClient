@@ -2,7 +2,7 @@ import React from 'react'
 
 import APIURL from '../helpers/environment'
 
-import { Typography, Button, Grid, Chip, Stack, Card, CardContent, Avatar, CardHeader } from '@mui/material';
+import { Typography, Button, Grid, Card, CardContent, Avatar, CardHeader, TextField, Select, MenuItem, InputLabel } from '@mui/material';
 
 import { AddTracks } from "./AddTracks"
 
@@ -78,7 +78,6 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
             <div>
                 <Typography
                     sx={{
-
                         paddingTop: 2,
                         paddingBottom: 2,
                         fontSize: 75,
@@ -86,29 +85,32 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
                     variant='h1'>
                     Create a Mix
                 </Typography>
-                <form onSubmit={(e) => this.handleSubmit(e)}>
+
+                <form style={{ textAlign: "center" }} onSubmit={(e) => this.handleSubmit(e)}>
                     <div>
-                        <label htmlFor="mixName">Name</label>
-                        <input onChange={(e) => this.setState({ mixName: e.target.value })} name="mixname" value={this.state.mixName} />
+                        <InputLabel id="simple-select-label"></InputLabel>
+                        <Select labelId="simple-select-label"
+                            id="simple-select"
+                            label="Cateogry"
+                            onChange={(e) => this.setState({ category: e.target.value })} name="category" value={this.state.category}>
+                            <MenuItem value="Hype">Hype</MenuItem>
+                            <MenuItem value="Vibe">A Vibe</MenuItem>
+                            <MenuItem value="IMF">In My Feelings</MenuItem>
+                        </Select>
                     </div>
                     <div>
-                        <label htmlFor="category">Category</label>
-                        <select onChange={(e) => this.setState({ category: e.target.value })} name="category" value={this.state.category}>
-                            <option disabled> </option>
-                            <option value="Hype">Hype</option>
-                            <option value="Vibe">A Vibe</option>
-                            <option value="IMF">In My Feelings</option>
-                        </select>
+                        <TextField variant="outlined" id="outlined-size-normal" label="Mix Name" defaultValue="Mix Name" onChange={(e) => this.setState({ mixName: e.target.value })} name="mixname" value={this.state.mixName} />
                     </div>
                     <div>
-                        <label htmlFor="imageUrl">Image</label>
-                        <input onChange={(e) => this.setState({ imageUrl: e.target.value })} name="imageUrl" value={this.state.imageUrl} />
+                        <TextField variant="outlined" id="outlined-size-normal" label="Image URL" defaultValue="Image URL" onChange={(e) => this.setState({ imageUrl: e.target.value })} name="imageUrl" value={this.state.imageUrl} />
                     </div>
                     <div>
-                        <label htmlFor="description">Description</label>
-                        <input onChange={(e) => this.setState({ description: e.target.value })} name="description" value={this.state.description} />
+                        <TextField variant="outlined" id="outlined-size-normal" label="Description" defaultValue="Description" onChange={(e) => this.setState({ description: e.target.value })} name="description" value={this.state.description} />
                     </div>
-                    <button type="submit">Render</button>
+                    <Button sx={{
+                        color: '#6200EE',
+                    }}
+                        variant="text" type="submit">MAKE IT HAPPEN</Button>
                 </form>
             </div>
 
@@ -118,7 +120,18 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
     showCreated = () => {
         return (
             <div>
-                <Card sx={{ minWidth: 330, color: "white", minHeight: 100, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
+                <Typography
+                    sx={{
+                        paddingTop: 2,
+                        paddingBottom: 2,
+                        fontSize: 75,
+                        textAlign: "center"
+                    }}
+                    variant='h1'>
+                    Mix Created
+                </Typography>
+
+                <Card sx={{ maxWidth: 340, color: "white", minHeight: 120, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2, marginLeft: "auto", marginRight:"auto" }} >
                     <CardHeader sx={{ paddingBottom: 0, paddingTop: 1 }}
                         avatar={
                             <Avatar src={this.state.imageUrl} alt={"user chosen graphic of mix"} />

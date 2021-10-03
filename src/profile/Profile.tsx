@@ -2,6 +2,8 @@ import React from 'react'
 import { MyMixes } from './MyMixes'
 import { About } from './About'
 
+import { Button, Grid } from '@mui/material';
+
 
 type ProfileProps = {
     clearToken: Function,
@@ -9,14 +11,23 @@ type ProfileProps = {
 }
 
 
-export class Profile extends React.Component <ProfileProps, {}> {
+export class Profile extends React.Component<ProfileProps, {}> {
     render() {
-        return(
-            <div>
-                <About token={this.props.token}/>
-                <button onClick={(e) => this.props.clearToken()}>Logout</button>
-                <MyMixes token={this.props.token}/>
-            </div>
+        return (
+            <Grid
+                container
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <About token={this.props.token} />
+                <Button sx={{
+                    color: 'black',
+                    paddingTop: 1
+                }}
+                    variant="text" type="submit" onClick={(e) => this.props.clearToken()}>LOGOUT</Button>
+                <MyMixes token={this.props.token} />
+            </Grid>
         )
     }
 

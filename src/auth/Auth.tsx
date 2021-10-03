@@ -67,7 +67,7 @@ export class Auth extends React.Component<AuthProps, AuthState> {
                             fontSize: 25,
                         }}
                         variant='h1'>
-                        Tag line goes here, Tag line goes here
+                        Create a mix, pass the aux
                     </Typography>
 
                     <Box

@@ -17,32 +17,14 @@ type Track = {
 export class Feed extends React.Component<FeedProps, {}> {
     render() {
         return (
-            // <div>
-            //     {this.props.tracks.map((track: Track, index) => {
 
-            //         return (
-            //             <div key={index}>
-            //                 <div>
-            //                     {track.title}
-            //                 </div>
-            //                 <div>
-            //                     {track.artist}
-            //                 </div>
-            //                 <div>
-            //                     {track.note}
-            //                 </div>
-            //             </div>
-
-            //         )
-            //     })}
-
-                <TableContainer  sx={{  alignContent:"center", justifyContent:"center"}} >
-                    <Table sx={{  minWidth: 350, maxWidth: 500}} aria-label="simple table">
+                <TableContainer >
+                    <Table sx={{  minWidth: 350, marginRight: "auto", marginLeft: "auto"}} aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <TableCell align="center">Song</TableCell>
                                 <TableCell align="center">Artist</TableCell>
-                                <TableCell align="center">Mix Note</TableCell>
+                                <TableCell align="center">Track Note</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -61,7 +43,6 @@ export class Feed extends React.Component<FeedProps, {}> {
                         </TableBody>
                     </Table>
                 </TableContainer>
-            // </div>
         )
     }
 

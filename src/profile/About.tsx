@@ -2,8 +2,7 @@ import React from 'react'
 
 import APIURL from '../helpers/environment'
 
-
-import { Typography, Button, Grid, Chip, Stack, Card, CardContent, Avatar, CardHeader } from '@mui/material';
+import { Typography, Button, ButtonGroup, Box, Grid, Card, CardContent, Avatar, CardHeader, TextField, Select, MenuItem, InputLabel } from '@mui/material';
 
 type AboutProps = {
     token: string
@@ -97,23 +96,26 @@ export class About extends React.Component<AboutProps, AboutState>{
 
     editProfileToggle = () => {
         return (
-            <div>
-
-                <button onClick={(e) => this.setState({ showEdit: false })}>Nevermind</button>
-                <form onSubmit={(e) => this.editProfile(e)}>
+            <div style={{ textAlign: "center" }}>
+                <Button sx={{
+                    color: '#6200EE',
+                    paddingBottom: 1
+                }} onClick={(e) => this.setState({ showEdit: false })}>Nevermind</Button>
+                <form style={{ textAlign: "center" }} onSubmit={(e) => this.editProfile(e)}>
                     <div>
-                        <label htmlFor="mixName">Full Name</label>
-                        <input onChange={(e) => this.setState({ fullName: e.target.value })} name="fullname" value={this.state.fullName} />
+                        <TextField required variant="outlined" id="outlined-size-normal" label="Full Name" defaultValue="Full Name" onChange={(e) => this.setState({ fullName: e.target.value })} name="fullname" value={this.state.fullName} />
                     </div>
                     <div>
-                        <label htmlFor="imageUrl">Image</label>
-                        <input onChange={(e) => this.setState({ avatarUrl: e.target.value })} name="avatarUrl" value={this.state.avatarUrl} />
+                        <TextField variant="outlined" id="outlined-size-normal" label="Image" defaultValue="Image" onChange={(e) => this.setState({ avatarUrl: e.target.value })} name="avatarUrl" value={this.state.avatarUrl} />
                     </div>
                     <div>
-                        <label htmlFor="description">Bio</label>
-                        <input onChange={(e) => this.setState({ bio: e.target.value })} name="bio" value={this.state.bio} />
+                        <TextField variant="outlined" id="outlined-size-normal" label="Bio" defaultValue="Bio" onChange={(e) => this.setState({ bio: e.target.value })} name="bio" value={this.state.bio} />
                     </div>
-                    <button type="submit">Update</button>
+                    <Button sx={{
+                        color: '#6200EE',
+                        paddingBottom: 1
+                    }}
+                        variant="text" type="submit">Update</Button>
                 </form>
 
             </div>
@@ -132,12 +134,31 @@ export class About extends React.Component<AboutProps, AboutState>{
             <div>
                 {this.state.showEdit === true ? this.editProfileToggle()
                     : null}
-                <img src={this.state.profile.avatarUrl} alt="the user profile" />
-                <p>Full Name: {this.state.profile.fullName}</p>
-                <p>Bio: {this.state.profile.bio}</p>
+                <Box
+                    sx={{
+                        minWidth: 300,
+                        minHeight: 300,
+                        maxWidth: 700,
+                        maxHeight: 700,
+                        bgcolor: '#6200EE',
+                        borderRadius: 17,
+                        textAlign: 'center',
+                        color: "white",
+                        alignContent: "center",
+                        justifyContent: "center",
+                        padding: 5
+                    }}>
+                    <img style={{ borderRadius: 50, maxHeight: 200, maxWidth: 200, paddingBottom: 2 }} src={this.state.profile.avatarUrl} alt="the user profile" />
+                    <Typography sx={{fontSize: "1em"}} variant="h1" component="div">{this.state.profile.fullName}</Typography>
+                    <Typography sx={{fontSize: "1em"}} variant="h2" component="div">{this.state.profile.bio}</Typography>
+                        <Button sx={{
+                            color: 'white',
+                        }} onClick={(e) => this.setState({ showEdit: true })}>Edit Profile</Button>
+                        <Button sx={{
+                            color: 'white',
+                        }} onClick={(e) => this.deleteProfile()}>Delete Profile</Button>
 
-                <button onClick={(e) => this.setState({ showEdit: true })}>Edit Profile</button>
-                <button onClick={(e) => this.deleteProfile()}>Delete Your Profile</button>
+                </Box>
 
             </div>
 
@@ -147,21 +168,23 @@ export class About extends React.Component<AboutProps, AboutState>{
     noProfile = () => {
         return (
             <div>
-                <p>You currently don't have a profile, Create one!</p>
-                <form onSubmit={(e) => this.createProfile(e)}>
+                <Typography variant="h3" component="div">You currently don't have a profile, Create one!</Typography>
+                <form style={{ textAlign: "center" }} onSubmit={(e) => this.createProfile(e)}>
                     <div>
-                        <label htmlFor="mixName">Full Name</label>
-                        <input onChange={(e) => this.setState({ fullName: e.target.value })} name="fullname" value={this.state.fullName} />
+                        <TextField required variant="outlined" id="outlined-size-normal" label="Full Name" defaultValue="Full Name" onChange={(e) => this.setState({ fullName: e.target.value })} name="fullname" value={this.state.fullName} />
                     </div>
                     <div>
-                        <label htmlFor="imageUrl">Image</label>
-                        <input onChange={(e) => this.setState({ avatarUrl: e.target.value })} name="avatarUrl" value={this.state.avatarUrl} />
+                        <TextField variant="outlined" id="outlined-size-normal" label="Image" defaultValue="Image" onChange={(e) => this.setState({ avatarUrl: e.target.value })} name="avatarUrl" value={this.state.avatarUrl} />
                     </div>
                     <div>
-                        <label htmlFor="description">Bio</label>
-                        <input onChange={(e) => this.setState({ bio: e.target.value })} name="bio" value={this.state.bio} />
+                        <TextField variant="outlined" id="outlined-size-normal" label="Bio" defaultValue="Bio" onChange={(e) => this.setState({ bio: e.target.value })} name="bio" value={this.state.bio} />
                     </div>
                     <button type="submit">Create Profile</button>
+                    <Button sx={{
+                        color: '#6200EE',
+                        paddingTop: 1
+                    }}
+                        variant="text" type="submit">Create Profile</Button>
                 </form>
             </div>
 
@@ -171,16 +194,9 @@ export class About extends React.Component<AboutProps, AboutState>{
 
     render() {
         return (
-            <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-
-        >
-               <Typography
+            <div style={{ textAlign: "center" }}>
+                <Typography
                     sx={{
-
                         paddingTop: 2,
                         paddingBottom: 2,
                         fontSize: 75,
@@ -188,10 +204,9 @@ export class About extends React.Component<AboutProps, AboutState>{
                     variant='h1'>
                     Profile
                 </Typography>
-
                 {this.state.profile === null ? this.noProfile()
                     : this.showProfile()}
-            </Grid>
+            </div>
         )
     }
 

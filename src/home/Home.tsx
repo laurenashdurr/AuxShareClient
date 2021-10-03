@@ -169,7 +169,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
                 {this.state.mixes.map((mix: Mix, index) => {
                     return (
                         <div key={index}>
-                            <Card sx={{ minWidth: 330, maxWidth: 330, color: "white", minHeight: 100, maxHeight: 100, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
+                            <Card sx={{ minWidth: 330, maxWidth: 330, color: "white", minHeight: 120, maxHeight: 120, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
                                 <CardHeader sx={{ paddingBottom: 0, paddingTop: 1 }}
                                     avatar={
                                         <Avatar src={mix.imageUrl} alt={"user chosen graphic of mix"} />
@@ -188,13 +188,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
                                     <Typography variant="body2">
                                         {mix.description}
                                     </Typography>
-                                    <Button sx={{ color: "white" }} aria-label="settings" onClick={(e) => {
-                                            this.toggleFunction()
-                                            this.fetchTracks(mix)
-                                        }}>
-                                            {this.state.trackToggle ? "Hide the Mix"
-                                                : "Peep the Mix"}
-                                                </Button>
+                                   
                                 </CardContent>
                             </Card>
                         </div>
