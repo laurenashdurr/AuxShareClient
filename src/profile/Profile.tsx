@@ -13,7 +13,6 @@ export class Profile extends React.Component <ProfileProps, {}> {
     render() {
         return(
             <div>
-                <h1>My Profile</h1>
                 <About token={this.props.token}/>
                 <button onClick={(e) => this.props.clearToken()}>Logout</button>
                 <MyMixes token={this.props.token}/>

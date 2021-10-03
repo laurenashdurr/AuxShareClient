@@ -36,7 +36,7 @@ export class Feed extends React.Component<FeedProps, {}> {
             //         )
             //     })}
 
-                <TableContainer>
+                <TableContainer  sx={{  alignContent:"center", justifyContent:"center"}} >
                     <Table sx={{  minWidth: 350, maxWidth: 500}} aria-label="simple table">
                         <TableHead>
                             <TableRow>

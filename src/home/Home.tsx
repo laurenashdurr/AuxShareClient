@@ -70,7 +70,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchMixesMood1 = () => {
-        fetch(`${APIURL}/mixes/hype`, {
+        fetch(`${APIURL}/mixes/Hype`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchMixesMood2 = () => {
-        fetch(`${APIURL}/mixes/avibe`, {
+        fetch(`${APIURL}/mixes/Vibe`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
     };
 
     fetchMixesMood3 = () => {
-        fetch(`${APIURL}/mixes/imf`, {
+        fetch(`${APIURL}/mixes/IMF`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -156,11 +156,11 @@ export class Home extends React.Component<HomeProps, HomeState>{
                     <Chip sx={{
                         backgroundColor: '#6200EE',
                         color: "white"
-                    }} label="A Vibe" onClick={this.fetchMixesMood2} />
+                    }} label="My Feelings" onClick={this.fetchMixesMood3} />
                     <Chip sx={{
                         backgroundColor: '#6200EE',
                         color: "white"
-                    }} label="In My Feelings" onClick={this.fetchMixesMood3} />
+                    }} label="A Vibe" onClick={this.fetchMixesMood2} />
                 </Stack>
 
                 {this.state.trackToggle ? <Feed tracks={this.state.myTracks} />
@@ -169,14 +169,14 @@ export class Home extends React.Component<HomeProps, HomeState>{
                 {this.state.mixes.map((mix: Mix, index) => {
                     return (
                         <div key={index}>
-                            <Card sx={{ minWidth: 350, maxWidth: 350, color: "white", minHeight: 120, maxHeight: 120, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
+                            <Card sx={{ minWidth: 330, maxWidth: 330, color: "white", minHeight: 100, maxHeight: 100, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
                                 <CardHeader sx={{ paddingBottom: 0, paddingTop: 1 }}
                                     avatar={
                                         <Avatar src={mix.imageUrl} alt={"user chosen graphic of mix"} />
                                     }
                                     title={mix.mixName + " • " + mix.category}
                                     action={
-                                        <Button aria-label="settings" onClick={(e) => {
+                                        <Button sx={{ color: "white" }} aria-label="settings" onClick={(e) => {
                                             this.toggleFunction()
                                             this.fetchTracks(mix)
                                         }}>
@@ -184,10 +184,17 @@ export class Home extends React.Component<HomeProps, HomeState>{
                                                 : "Peep the Mix"}</Button>
                                     }
                                 />
-                                <CardContent sx={{ paddingTop: 0, paddingBottom: 0 }}>
+                                <CardContent sx={{ paddingTop: 1, paddingBottom: 1 }}>
                                     <Typography variant="body2">
                                         {mix.description}
                                     </Typography>
+                                    <Button sx={{ color: "white" }} aria-label="settings" onClick={(e) => {
+                                            this.toggleFunction()
+                                            this.fetchTracks(mix)
+                                        }}>
+                                            {this.state.trackToggle ? "Hide the Mix"
+                                                : "Peep the Mix"}
+                                                </Button>
                                 </CardContent>
                             </Card>
                         </div>

@@ -95,9 +95,9 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
                         <label htmlFor="category">Category</label>
                         <select onChange={(e) => this.setState({ category: e.target.value })} name="category" value={this.state.category}>
                             <option disabled> </option>
-                            <option value="hype">Hype</option>
-                            <option value="avibe">A Vibe</option>
-                            <option value="imf">In My Feelings</option>
+                            <option value="Hype">Hype</option>
+                            <option value="Vibe">A Vibe</option>
+                            <option value="IMF">In My Feelings</option>
                         </select>
                     </div>
                     <div>
@@ -118,7 +118,7 @@ export class AddMix extends React.Component<AddMixProps, AddMixState> {
     showCreated = () => {
         return (
             <div>
-                <Card sx={{ minWidth: 350, color: "white", minHeight: 120, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
+                <Card sx={{ minWidth: 330, color: "white", minHeight: 100, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
                     <CardHeader sx={{ paddingBottom: 0, paddingTop: 1 }}
                         avatar={
                             <Avatar src={this.state.imageUrl} alt={"user chosen graphic of mix"} />
