@@ -36,13 +36,13 @@ export class Feed extends React.Component<FeedProps, {}> {
             //         )
             //     })}
 
-                <TableContainer component={Paper}>
+                <TableContainer>
                     <Table sx={{ minWidth: 350 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Song</TableCell>
-                                <TableCell>Artist</TableCell>
-                                <TableCell>Mix Note</TableCell>
+                                <TableCell align="center">Song</TableCell>
+                                <TableCell align="center">Artist</TableCell>
+                                <TableCell align="center">Mix Note</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -51,11 +51,11 @@ export class Feed extends React.Component<FeedProps, {}> {
                                     key={index}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell component="th" scope="row">
+                                    <TableCell component="th" scope="row" align="center">
                                         {track.title}
                                     </TableCell>
-                                    <TableCell>{track.artist}</TableCell>
-                                    <TableCell>{track.note}</TableCell>
+                                    <TableCell align="center">{track.artist}</TableCell>
+                                    <TableCell align="center">{track.note}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

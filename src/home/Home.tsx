@@ -163,84 +163,63 @@ export class Home extends React.Component<HomeProps, HomeState>{
                     }} label="Mood 3" onClick={this.fetchMixesMood3} />
                 </Stack>
 
-              
-                    {this.state.trackToggle ? <Feed tracks={this.state.myTracks} />
-                        : null}
+
+                {this.state.trackToggle ? <Feed tracks={this.state.myTracks} />
+                    : null}
 
                 {/* test code */}
-                <Card sx={{ minWidth: 350, maxWidth: 350, color: "white", minHeight: 150, maxHeight: 200, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2}} >
-                <CardHeader sx={{ paddingBottom: 0, paddingTop: 1 }}
-                avatar={
-                <Avatar src="https://assets3.thrillist.com/v1/image/2726470/1200x630/flatten;crop_down;jpeg_quality=70" />
-            }
-                title="title"
-                action={
-                <IconButton aria-label="settings"
-                >
-                <UnfoldMoreRoundedIcon sx={{ color: "white" }} />
-                </IconButton>
-            }
-                />
-                <CardContent sx={{ paddingTop: 0, paddingBottom: 1 }}>
-                <Typography variant="body2">
-                this is a fake description I really love this mix and all the descriptions should really be this long to help the length
-                </Typography>
-                </CardContent>
+                {/* <Card sx={{ minWidth: 350, maxWidth: 350, color: "white", minHeight: 150, maxHeight: 200, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
+                    <CardHeader sx={{ paddingBottom: 0, paddingTop: 1 }}
+                        avatar={
+                            <Avatar src="https://assets3.thrillist.com/v1/image/2726470/1200x630/flatten;crop_down;jpeg_quality=70" />
+                        }
+                        title="title"
+                        action={
+                            <IconButton aria-label="settings"
+                            >
+                                <UnfoldMoreRoundedIcon sx={{ color: "white" }} />
+                            </IconButton>
+                        }
+                    />
+                    <CardContent sx={{ paddingTop: 0, paddingBottom: 1 }}>
+                        <Typography variant="body2">
+                            this is a fake description I really love this mix and all the descriptions should really be this long to help the length
+                        </Typography>
+                    </CardContent>
 
-                </Card>
+                </Card> */}
 
-                <Card sx={{ minWidth: 350, maxWidth: 350, color: "white", minHeight: 150, maxHeight: 200, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2}} >
-                <CardHeader sx={{ paddingBottom: 0, paddingTop: 1 }}
-                avatar={
-                <Avatar src="https://assets3.thrillist.com/v1/image/2726470/1200x630/flatten;crop_down;jpeg_quality=70" />
-            }
-                title="title"
-                action={
-                <IconButton aria-label="settings"
-                >
-                <UnfoldMoreRoundedIcon sx={{ color: "white" }} />
-                </IconButton>
-            }
-                />
-                <CardContent sx={{ paddingTop: 0, paddingBottom: 1 }}>
-                <Typography variant="body2">
-                this is a fake description I really love this mix and all the
-                </Typography>
-                </CardContent>
-                </Card>
+                {/* test code  */}
 
-            {/* test code  */}
-
-            {this.state.mixes.map((mix: Mix, index) => {
-                return (
-                <div key={index}>
-                <Card sx={{ minWidth: 300, maxWidth: 500, color: "white", maxHeight: 300, backgroundColor: '#6200EE', borderRadius: 10, paddingBottom: 2 }} >
-                <CardHeader sx={{ paddingBottom: 1, paddingTop: 1 }}
-                avatar={
-                <Avatar src={mix.imageUrl} alt={"user chosen graphic of mix"} />
-            }
-                title={mix.mixName}
-                subheader={mix.category}
-                action={
-                <IconButton aria-label="settings" onClick={(e) => {
-                this.toggleFunction()
-                this.fetchTracks(mix)
-            }}>
-                <UnfoldMoreRoundedIcon sx={{ color: "white" }} />
-                </IconButton>
-            }
-                />
-                <CardContent sx={{ paddingTop: 1, paddingBottom: 1 }}>
-                <Typography variant="body1">
-            {mix.description}
-                </Typography>
-                </CardContent>
-                </Card>
-                </div>
+                {this.state.mixes.map((mix: Mix, index) => {
+                    return (
+                        <div key={index}>
+                            <Card sx={{ minWidth: 350, maxWidth: 350, color: "white", minHeight: 150, maxHeight: 200, backgroundColor: '#6200EE', borderRadius: 10, marginBottom: 2 }} >
+                                <CardHeader sx={{ paddingBottom: 0, paddingTop: 1 }}
+                                    avatar={
+                                        <Avatar src={mix.imageUrl} alt={"user chosen graphic of mix"} />
+                                    }
+                                    title={mix.mixName + "•" + mix.category}
+                                    action={
+                                        <IconButton aria-label="settings" onClick={(e) => {
+                                            this.toggleFunction()
+                                            this.fetchTracks(mix)
+                                        }}>
+                                            <UnfoldMoreRoundedIcon sx={{ color: "white" }} />
+                                        </IconButton>
+                                    }
+                                />
+                                <CardContent sx={{ paddingTop: 0, paddingBottom: 0 }}>
+                                    <Typography variant="body2">
+                                        {mix.description}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </div>
 
 
-            )
-            })}
+                    )
+                })}
             </Grid>
         )
     }
