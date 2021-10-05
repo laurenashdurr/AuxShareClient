@@ -190,7 +190,7 @@ export class Home extends React.Component<HomeProps, HomeState>{
                                     <Typography variant="body2">
                                         {mix.description}
                                     </Typography>    
-                                   <Button sx={{ color: "white" }} ><FavoriteRoundedIcon/></Button>
+                            
                                 </CardContent>
                             </Card>
                         </div>
