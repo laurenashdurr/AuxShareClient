@@ -6,6 +6,8 @@ import { Feed } from './Feed'
 
 import { Typography, Button, Grid, Chip, Stack, Card, CardContent, Avatar, CardHeader } from '@mui/material';
 
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+
 
 
 
@@ -187,16 +189,19 @@ export class Home extends React.Component<HomeProps, HomeState>{
                                 <CardContent sx={{ paddingTop: 1, paddingBottom: 1 }}>
                                     <Typography variant="body2">
                                         {mix.description}
-                                    </Typography>
-                                   
+                                    </Typography>    
+                                   <Button sx={{ color: "white" }} ><FavoriteRoundedIcon/></Button>
                                 </CardContent>
                             </Card>
                         </div>
 
 
                     )
+                    
                 })}
+                
             </Grid>
+            
         )
     }
 

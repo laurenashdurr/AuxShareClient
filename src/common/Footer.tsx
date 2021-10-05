@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 
 
 
@@ -62,6 +63,7 @@ export class Footer extends React.Component<FooterProps, {}> {
                     >
                         <BottomNavigationAction sx={{ color: "white" }} label="Home" href="/" icon={<HomeRoundedIcon sx={{ color: "white" }} />} />
                         <BottomNavigationAction sx={{ color: "white" }} label="Create" href="/mixes" icon={<AddCircleRoundedIcon sx={{ color: "white" }} />} />
+                        <BottomNavigationAction sx={{ color: "white" }} label="Favorites" href="/" icon={<FavoriteRoundedIcon sx={{ color: "white" }} />} />
                         <BottomNavigationAction sx={{ color: "white" }} label="Profile" href="/profile" icon={<AccountCircleRoundedIcon sx={{ color: "white" }} />} />
                     </BottomNavigation>
                 </Paper>
